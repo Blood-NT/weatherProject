@@ -41,3 +41,6 @@ def index(request):
         data = {}
 
     return render(request, "main/index.html", data)
+
+   # "pressure": str(list_of_data['wind']['speed']),
+    # "humidity": str(list_of_data['wind']['deg']),
