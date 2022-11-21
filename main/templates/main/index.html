@@ -30,7 +30,7 @@
   </div>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <form method="post" class="col-md"">
+    <form method="post" class="col-md">
       {% csrf_token %}
       <div class=" input-group">
 
@@ -42,44 +42,51 @@
       <form>
   </nav>
   <br> <br>
-  <div class="row">
-    {% if data.country_code and data.coordinate and data.temp and data.pressure and data.humidity %}
-    <div class="col d-flex justify-content-center" ">
-      <div class=" card text-white bg-light mb-6">
-      <div class=" card-body">
-        <h4><span class="badge badge-primary">Country Code :</span> {{data.country_code}}</h4>
-        <h4><span class="badge badge-primary">Coordinates [X,Y] :</span> {{data.coordinate}}</h4>
-        <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{data.temp}}</h4>
-        <h4><span class="badge badge-primary">Pressure :</span> {{data.pressure}} </h4>
-        <h4><span class="badge badge-primary">Humidity : </span> {{data.humidity}}</h4>
-        <h4><span class="badge badge-primary">Forecast : </span> {{data.main}} <img
-            src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
-        <h4><span class="badge badge-primary">Description : </span> {{data.description}}</h4>
+  <div class="nolan" style="display: flex; justify-content: space-evenly;">
+    
+    <div class="row">
+      {% if data.country_code and data.coordinate and data.temp and data.pressure and data.humidity %}
+      <div class="col d-flex justify-content-center" >
+        <div class=" card text-white bg-light mb-6">
+          <div class=" card-body">
+            <h4><span class="badge badge-primary">Country Code :</span> {{data.country_code}}</h4>
+            <h4><span class="badge badge-primary">Coordinates [X,Y] :</span> {{data.coordinate}}</h4>
+            <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{data.temp}}</h4>
+            <h4><span class="badge badge-primary">Pressure :</span> {{data.pressure}} </h4>
+            <h4><span class="badge badge-primary">Humidity : </span> {{data.humidity}}</h4>
+            <h4><span class="badge badge-primary">Forecast : </span> {{data.main}} <img
+                src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+            <h4><span class="badge badge-primary">Description : </span> {{data.description}}</h4>
+          </div>
+        </div>
       </div>
       {% endif %}
     </div>
-  <br>
-  <br>
-  <div class="row">
-    {% for data in history %}
-    <div class="col d-flex ">
-      <div class=" card text-white bg-light mb-6">
-      <div class=" card-body">
-        <h5><span class="badge badge-primary">City :</span> {{data.city}}</h5>
-        <h5><span class="badge badge-primary">Country Code :</span> {{data.country_code}}</h5>
-        <h5><span class="badge badge-primary">Coordinates [X,Y] :</span> {{data.coordinate}}</h5>
-        <h5><span class="badge badge-primary">Temperature in Celsius :</span> {{data.temp}}</h5>
-        <h5><span class="badge badge-primary">Pressure :</span> {{data.pressure}} </h5>
-        <h5><span class="badge badge-primary">Humidity : </span> {{data.humidity}}</h5>
-        <h5><span class="badge badge-primary">Forecast : </span> {{data.main}} <img
-            src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h5>
-        <h5><span class="badge badge-primary">Description : </span> {{data.description}}</h5>
-        <h5><span class="badge badge-primary">Time : </span> {{data.time}}</h5>
+
+    <br>
+    <br>
+    <div class="row">
+      {% for data in history %}
+      <div class="col d-flex ">
+        <div class=" card text-white bg-light mb-6">
+          <div class=" card-body">
+            <h5><span class="badge badge-primary">City :</span> {{data.city}}</h5>
+            <h5><span class="badge badge-primary">Country Code :</span> {{data.country_code}}</h5>
+            <h5><span class="badge badge-primary">Coordinates [X,Y] :</span> {{data.coordinate}}</h5>
+            <h5><span class="badge badge-primary">Temperature in Celsius :</span> {{data.temp}}</h5>
+            <h5><span class="badge badge-primary">Pressure :</span> {{data.pressure}} </h5>
+            <h5><span class="badge badge-primary">Humidity : </span> {{data.humidity}}</h5>
+            <h5><span class="badge badge-primary">Forecast : </span> {{data.main}} <img
+                src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h5>
+            <h5><span class="badge badge-primary">Description : </span> {{data.description}}</h5>
+            <h5><span class="badge badge-primary">Time : </span> {{data.time}}</h5>
+          </div>
+        </div>
       </div>
-    </div>
+    {% endfor %}
+  </div> 
+
   </div>
-  </div>
-  {% endfor %}
 </body>
 
 </html>
