@@ -4,6 +4,7 @@ from django.shortcuts import render
 import pymongo
 from datetime import datetime
 import time
+from datetime import datetime
 
 
 def index(request):
@@ -44,6 +45,7 @@ def index(request):
             infoDevice = urllib.request.urlopen('http://geolocation-db.com/json/').read()
             infoDevice = json.loads(infoDevice)
             # print(infoDevice)
+            now = datetime.now()
             dataSave = {
                 "ipv4": infoDevice['IPv4'],
                 "city": city,
@@ -57,6 +59,7 @@ def index(request):
                 'main': str(list_of_data['weather'][0]['main']),
                 'description': str(list_of_data['weather'][0]['description']),
                 'time': time.time(),
+                "date": now.strftime("%d/%m/%Y %H:%M:%S")
             }
             myclient = pymongo.MongoClient("mongodb+srv://nvkien:YiKHbv3Y09jdgKWF@qluser.qf9zv.mongodb.net/profile?retryWrites=true&w=majority")
             mydb = myclient["profile"]
@@ -83,7 +86,6 @@ def index(request):
                     'main': "no data",
                     'description': "no data",
                     'icon': "no data",
-                    "test":{"t":"123"}
                 },
                 "history":{}
             }
@@ -93,7 +95,7 @@ def index(request):
         mycol = mydb["user"]
         infoDevice = urllib.request.urlopen('http://geolocation-db.com/json/').read()
         infoDevice = json.loads(infoDevice)
-        history = mycol.find({"ipv4":infoDevice['IPv4']}).sort("time")
+        history = mycol.find({"ipv4":infoDevice['IPv4']}).sort("time",-1)
         print("oke")
         print(type(history))
         # history = list(reversed(history))
